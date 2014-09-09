@@ -1,0 +1,12 @@
+$('#project_<%= @project.id %>').replaceWith("<%=j render @project %>");
+
+<% if @down_task %>
+  $('#task_<%= @down_task.id %>').data('yellow', false);
+  $('#task_<%= @down_task.id %>').css('background-color', '#f9f9f9');
+  $('#task_<%= @task.id %>').css('background-color', '#FCFED5');
+
+  setTimeout(function() {
+    $('#task_<%= @task.id %>').css('background-color', '#f9f9f9');
+    $('#task_<%= @down_task.id %>').data('yellow', true);
+  }, 400);
+<% end %>

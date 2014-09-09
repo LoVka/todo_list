@@ -1,0 +1,25 @@
+<%= form_for task, remote: true, html: { class: "form-horizontal task" } do |f| %>
+
+  <%= f.hidden_field :project_id %>
+
+  <div class="form-group">
+    <div class="col-lg-4">
+      <%= f.text_field :name, class: 'form-control', id: (task.id ? "project_#{task.project_id}_task_#{task.id}_name" : "project_#{task.project_id}_task_name"), autocomplete: "off" %>
+    </div>
+
+    <% if task.id %>
+      <div class="col-lg-3">
+        <%= f.select :status, [['unstarted', 'unstarted'], ['started', 'started'], ['compleated', 'compleated']], class: 'form-control', autocomplete: "off" %>
+      </div>
+
+      <div class="col-lg-3">
+        <%= f.text_field :deadline, class: 'form-control', autocomplete: "off" %>
+      </div>
+    <% end %>
+
+    <div class="col-lg-2">  
+      <%= f.submit (task.id ? "Update Task" : "Add Task"), class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+<% end %>

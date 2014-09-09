@@ -1,0 +1,3 @@
+$('#project_<%= @task.project_id %>_tasks').prepend("<%=j render 'task_update', task: @task %>");
+$('#project_<%= @task.project_id %>_tasks').prepend("<%=j render @task %>");
+$('#project_<%= @task.project_id %>_task_name').val('');

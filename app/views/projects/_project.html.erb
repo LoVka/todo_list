@@ -1,0 +1,21 @@
+<div id="project_<%= project.id %>">
+  <h3 onmouseover="$('#project_<%= project.id %>_manage').show();" onmouseout="$('#project_<%= project.id %>_manage').hide();">
+    <%= project.name %>
+    <span id="project_<%= project.id %>_manage" style="display: none;">
+      <%= link_to 'Edit', '#', onclick: "$('#project_#{project.id}').hide(); $('#project_#{project.id}_update').fadeIn(); return false;".html_safe, class: "btn btn-default btn-xs" %>
+      <%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: 'btn btn-xs btn-danger' %>
+    </span>
+  </h3>
+
+  <%= render 'tasks/form', task: Task.new(project_id: project.id) %>
+
+  <table class="table table-striped">
+    <tbody id="project_<%= project.id %>_tasks">
+      <% project.tasks.each do |task| %>
+        <%= render task %>
+        <%= render 'tasks/task_update', task: task %>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

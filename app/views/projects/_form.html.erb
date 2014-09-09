@@ -1,0 +1,13 @@
+<%= form_for project, remote: true, html: { class: "form-horizontal project" } do |f| %>
+
+  <div class="form-group">
+    <div class="col-lg-4">
+      <%= f.text_field :name, class: 'form-control', id: (project.id ? "project_#{project.id}_name" : 'project_name'), autocomplete: "off" %>
+    </div>
+  
+    <div class="col-lg-2">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+    </div>
+  </div>
+
+<% end %>

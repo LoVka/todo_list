@@ -1,0 +1,7 @@
+$('#projects').append("<%=j render @project %>");
+$('#projects').append("<%=j render 'project_update', project: @project %>");
+$('#projects').append("<br />");
+$('#project_name').val('');
+
+$("#new_project_block").hide();
+$("#new_project_link").fadeIn();

@@ -1,0 +1,17 @@
+<tr id="task_<%= task.id %>" onmouseover="if ($('#task_<%= task.id %>').data('yellow')) { $(this).css('background-color', '#FCFED5'); $('#task_<%= task.id %>_manage').show(); $('#task_<%= task.id %>_priority').show(); }" onmouseout="$(this).css('background-color', '#f9f9f9'); $('#task_<%= task.id %>_manage').hide(); $('#task_<%= task.id %>_priority').hide();" data-yellow="true">
+  <td class="col-lg-6" style="padding-top: 10px; padding-bottom: 10px;"><%= task.name %></td>
+  <td class="col-lg-2"><%= task.deadline.strftime('%-dth %b %Y') if task.deadline %></td>
+  <td class="col-lg-1">
+    <div id="task_<%= task.id %>_priority" style="display: none;">
+      <%= link_to '<span class="badge">&#8593;</span>'.html_safe, up_path(task), remote: true, method: :put %>
+      <%= link_to '<span class="badge">&#8595;</span>'.html_safe, down_path(task), remote: true, method: :put %>
+    </div>
+  </td>
+  <td class="col-lg-1"><span class="label <%= task_state_label_class(task.state) %>"><%= task.state %></span></td>
+  <td class="col-lg-2" style="text-align: right;">
+    <div id="task_<%= task.id %>_manage" style="display: none;">
+      <%= link_to 'Edit', '#', onclick: "$('#task_#{task.id}').hide(); $('#task_#{task.id}_update').fadeIn(); return false;".html_safe, class: 'btn btn-default btn-xs' %>
+      <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: 'btn btn-xs btn-danger' %>
+    </div>
+  </td>
+</tr>

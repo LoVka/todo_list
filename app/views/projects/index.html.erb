@@ -1,0 +1,15 @@
+<div id="projects">
+  <% @projects.each do |project| %>
+    <%= render project %>
+    <%= render 'project_update', project: project %>
+    <br />
+  <% end %>
+</div>
+
+<br />
+
+<%= link_to 'Add TODO List', '#', onclick: "$(this).hide(); $('#new_project_block').fadeIn(); return false;".html_safe, id: 'new_project_link', class: 'btn btn-primary' %>
+
+<div id="new_project_block" style="display: none;">
+  <%= render 'form', project: Project.new %>
+</div>
